@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tap Tap Game</title>
+    <style>
+        /* Basic reset and styling */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #ffe29f, #ffa99f, #ff719a);
+            color: #333;
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .total-coins {
+            font-size: 20px;
+            background: linear-gradient(to right, #ffcc33, #ff9900);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        /* Circle container */
+        .circle-container {
+            position: relative;
+            top: 100px;
+            margin: 0 auto;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, #fff200, #ffd700);
+            border-radius: 50%;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .circle-container img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        /* Coin Limit Display */
+        .coin-limit {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <div class="header">
+        <div class="logo">M</div>
+        <div class="total-coins">Total Coins: <span id="coinCount">0</span></div>
+    </div>
+
+    <!-- Circle Container -->
+    <div class="circle-container" id="tapCircle">
+        <img id="profilePic" src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-TTOopbXSFxv9LaXoOB0wAIKv/user-uBdqZCjIDjHbP8tD1Evcycww/img-SAUX89JK8TFRqGyL7sIUaR2B.png" alt="Boy's Photo">
+    </div>
+
+    <!-- Coin Limit Display -->
+    <div class="coin-limit" id="coinLimit">Coin Limit: 1000/1000</div>
+
+    <script>
+        let coins = 0;
+        const maxCoins = 1000;
+        const coinCountElement = document.getElementById('coinCount');
+        const coinLimitElement = document.getElementById('coinLimit');
+        const tapCircle = document.getElementById('tapCircle');
+        const profilePic = document.getElementById('profilePic');
+
+        // On Tap, Add Coins and Animate Image
+        tapCircle.addEventListener('click', () => {
+            if (coins < maxCoins) {
+                coins += 10;
+                coinCountElement.textContent = coins;
+                coinLimitElement.textContent = `Coin Limit: ${maxCoins - coins}/${maxCoins}`;
+
+                // Smile Animation
+                profilePic.style.transform = "scale(1.1)";
+                profilePic.src = "https://oaidalleapiprodscus.blob.core.windows.net/private/org-TTOopbXSFxv9LaXoOB0wAIKv/user-uBdqZCjIDjHbP8tD1Evcycww/img-SAUX89JK8TFRqGyL7sIUaR2B.png"; // Smiling Image
+                setTimeout(() => {
+                    profilePic.style.transform = "scale(1)";
+                }, 300);
+            }
+        });
+    </script>
+</body>
+</html>
